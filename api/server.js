@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import productCategoryRoute from "./routes/productCategory.js";
 import productBrandRoute from "./routes/productBrand.js";
+import productTagRoute from "./routes/productTagRoute.js";
+import productRoute from "./routes/productRoute.js";
 import mongoDBConnect from "./config/db.js";
 import { errorHandle } from "./middlewares/errorHandler.js";
 
@@ -23,8 +25,10 @@ app.use(cors());
 app.use(express.static("api/public"));
 
 //routes
+app.use("/api/v1/product", productRoute);
 app.use("/api/v1/product", productCategoryRoute);
 app.use("/api/v1/product", productBrandRoute);
+app.use("/api/v1/product", productTagRoute);
 
 //user error handler
 app.use(errorHandle);
